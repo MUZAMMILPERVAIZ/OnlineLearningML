@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Learning Model</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css" >
+</head>
+<body>
+    <div class="container">
+        <div id="menu">
+            <h1>Menu</h1>
+            <ul>
+                <li><a href="#" onclick="showForm('inflation')">Inflation Learning</a></li>
+                <li><a href="#" onclick="showForm('exchange')">Exchange Learning</a></li>
+                <li><a href="#" onclick="showForm('calculate')">Calculator</a></li>
+            </ul>
+        </div>
+        <div class="form-container">
+            <div id="default-message">
+                <h2>Please select an option from the menu</h2>
+            </div>
+            <div id="inflation" class="hide">
+                <h2>Inflation Learning</h2>
+                <form action="/" method="post">
+                    Years: <input type="text" name="inflation_years" placeholder="Enter years separated by comma"><br>
+                    Rates: <input type="text" name="inflation_rates" placeholder="Enter rates separated by comma"><br>
+                    <input type="submit" value="Train Inflation Model">
+                </form>
+            </div>
+            <div id="exchange" class="hide">
+                <h2>Exchange Learning</h2>
+                <form action="/" method="post">
+                    Years: <input type="text" name="exchange_years" placeholder="Enter years separated by comma"><br>
+                    Rates: <input type="text" name="currency_rates" placeholder="Enter rates separated by comma"><br>
+                    <input type="submit" value="Train Exchange Model">
+                </form>
+            </div>
+            <div id="calculate" class="hide">
+                <h2>Calculate</h2>
+                <form action="/" method="post">
+                    Naira Amount: <input type="text" name="naira_amount" placeholder="Enter naira amount"><br>
+                    Years: <input type="text" name="years" placeholder="Enter years"><br>
+                    Action:
+                    <select name="action">
+                        <option value="Future">Future</option>
+                        <option value="Past">Past</option>
+                    </select><br>
+                    <input type="submit" value="Calculate">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="result-container">
+        <h2>Result:</h2>
+        <p>{{ result }}</p>
+    </div>
+    <script>
+      function showForm(formId) {
+          ['inflation', 'exchange', 'calculate'].forEach(function(id) {
+              document.getElementById(id).style.display = 'none';
+          });
+          document.getElementById(formId).style.display = 'block';
+      }
+      // Load Calculator by default
+      window.onload = function() {
+          showForm('calculate');
+      }
+    </script>
+</body>
+</html>
